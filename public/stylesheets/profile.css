@@ -94,6 +94,10 @@ body, html, ul, li {
     font-size: 1rem;
     color: #666;
   }
+
+  main .profile-content {
+    display: flex;
+  }
   
   /* Profile Content Styling */
   .create-button {
@@ -114,7 +118,6 @@ body, html, ul, li {
 
 
 /* --------- */
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -194,8 +197,6 @@ input {
   align-items: center;
 }
 
-/* grid */
-
 img {
   border-radius: 40px;
 }
@@ -204,7 +205,6 @@ img:hover {
   filter: brightness(0.7);
   cursor: pointer;
 }
-
 
 .grid {
   text-align: center;
