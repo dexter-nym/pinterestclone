@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const plm = require('passport-local-mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/pinterestclone');
+mongoose.connect('mongodb://127.0.0.1:27017/pinterestclone')
+  .then(() => console.log('Connected to MongoDB successfully'))
+  .catch((error) => console.error('Failed to connect to MongoDB:', error));
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -11,7 +14,6 @@ const userSchema = new mongoose.Schema({
         },
     password: {
         type: String,
-        required: true
         },
     posts: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -35,5 +37,7 @@ const userSchema = new mongoose.Schema({
 }, { 
     timestamps: true 
 });
+
+userSchema.plugin(plm)
 
 module.exports = mongoose.model('user', userSchema);

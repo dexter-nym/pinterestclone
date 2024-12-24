@@ -1,13 +1,32 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session');
+const flash = require('connect-flash');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(session({
+  secret: 'yourSecretKey',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+// passport.serializeUser(usersRouter.serializeUser());
+// passport.deserializeUser(usersRouter.deserializerUser());
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.successMessage = req.flash('success');
+  res.locals.errorMessage = req.flash('error');
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
