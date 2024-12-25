@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    posttext: {
+    postcaption: {
         type: String,
         required: true,
         trim: true,
@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
+    },
+    image: {
+        type: String,
+        
     },
     createdat: {
         type: Date,
