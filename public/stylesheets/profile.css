@@ -83,6 +83,65 @@ body, html, ul, li {
     border-radius: 50%;
     margin-bottom: 10px;
   }
+
+  /* Modal overlay (background) */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .modal-content input[type="file"] {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .upload-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  /* --------modal end------- */
   
   .profile-name {
     font-size: 1.5rem;
@@ -262,21 +321,20 @@ form input[type="text"] {
 
 .grid {
   text-align: center;
-  max-width: 95vw;
+  max-width: 96vw;
   margin: 2.5vw auto;
 }
 
 .grid-item {
-  padding: 0 0 6px;
   box-sizing: border-box;
   display: inline;
-  background-color: #fdfdfd;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
   border-bottom-left-radius: 7%;
   border-bottom-right-radius: 7%;
-  margin: 5px;
+  margin: 7px;
+  max-width: 31vw;
 
   p {
     font-size: 1.2rem;

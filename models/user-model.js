@@ -19,10 +19,6 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'post'
         }],
-    dp: {
-        type: String, 
-        default: '' 
-        },
     email: {
         type: String,
         required: true,
@@ -33,7 +29,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-        }
+        },
+    profilepicture: {
+        type: String,
+        default: 'https://via.placeholder.com/150',
+    },
 }, { 
     timestamps: true 
 });

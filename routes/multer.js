@@ -2,7 +2,7 @@ const multer = require('multer');
 const {v4: uuidv4} = require('uuid');
 const path = require('path')
 
-const storage = multer.diskStorage({
+const postStorage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/images/uploads')
     },
@@ -12,6 +12,21 @@ const storage = multer.diskStorage({
     }
   })
   
-const upload = multer({ storage: storage })
+const uploadpost = multer({ storage: postStorage })
 
-module.exports = upload;
+const profileStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/profile')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = uuidv4()
+    cb(null, uniqueSuffix + path.extname(file.originalname))
+  }
+})
+
+const uploadprofile = multer({ storage: profileStorage })
+
+module.exports = {
+  uploadpost,
+  uploadprofile
+};

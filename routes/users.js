@@ -78,12 +78,10 @@ router.post('/login', passport.authenticate('local', {
   
 });
 
-router.get('/profile', isLoggedIn, async function (req, res, next) { 
-  console.log(req.session.passport.user)
+router.get('/profile', isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({
     _id: req.session.passport.user,
-  }).populate('posts'); 
-
+  }).populate('posts');
   res.render('profile',{user})
 });
 
@@ -91,7 +89,7 @@ router.get('/feed', isLoggedIn, function(req, res){
   res.render('feed')
 });
 
-router.post('/createpost', isLoggedIn, upload.single('file'),  async function(req, res) {
+router.post('/createpost', isLoggedIn, upload.uploadpost.single('file'),  async function(req, res) {
   try {    
     if(!req.file) {
       return res.status(400).send('No file were uploaded.')
@@ -103,6 +101,21 @@ router.post('/createpost', isLoggedIn, upload.single('file'),  async function(re
       user : user._id,
     });
     user.posts.push(post._id);
+    await user.save();
+    res.redirect('/users/profile')
+  } catch (error) {
+    res.send(error)
+  }
+  
+});
+
+router.post('/profilepicture', isLoggedIn, upload.uploadprofile.single('file'),  async function(req, res) {
+  try {    
+    if(!req.file) {
+      return res.status(400).send('No file were uploaded.')
+    }
+    const user = await userModel.findOne({_id: req.session.passport.user})
+    user.profilepicture = '/images/profile/' + req.file.filename
     await user.save();
     res.redirect('/users/profile')
   } catch (error) {
